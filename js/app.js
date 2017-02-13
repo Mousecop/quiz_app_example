@@ -1,5 +1,5 @@
 // State object
-var state = {
+const state = {
   questions: [
     {
       text: "Which number am I thinking of?",
@@ -84,9 +84,7 @@ function advance(state) {
 // Render functions
 function renderApp(state, elements) {
   // default to hiding all routes, then show the current route
-  Object.keys(elements).forEach(function(route) {
-    elements[route].hide();
-  });
+  Object.keys(elements).forEach((route) =>  elements[route].hide());
   elements[state.route].show();
 
   if (state.route === 'start') {
@@ -138,7 +136,7 @@ function renderQuestionText(state, element) {
 
 function renderChoices(state, element) {
   var currentQuestion = state.questions[state.currentQuestionIndex];
-  var choices = currentQuestion.choices.map(function(choice, index) {
+  var choices = currentQuestion.choices.map((choice, index) => {
     return (
       '<li>' +
         '<input type="radio" name="user-answer" value="' + index + '" required>' +
@@ -158,7 +156,7 @@ function renderAnswerFeedbackHeader(state, element) {
 };
 
 function renderAnswerFeedbackText(state, element) {
-  var choices = state.lastAnswerCorrect ? state.praises : state.admonishments;
+  var choices = state.lastAnswerCorrect ? state.praises : state.admonishments; //ternary operator
   var text = choices[Math.floor(state.feedbackRandom * choices.length)];
   element.text(text);
 };
@@ -195,7 +193,7 @@ $(".restart-game").click(function(event){
   renderApp(state, PAGE_ELEMENTS);
 });
 
-$("form[name='current-question']").submit(function(event) {
+$("form[name='current-question']").submit((event) => {
   event.preventDefault();
   var answer = $("input[name='user-answer']:checked").val();
   answer = parseInt(answer, 10);
