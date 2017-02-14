@@ -57,6 +57,7 @@ const resetGame = state => {
 
 const answerQuestion = (state, answer) => {
   const currentQuestion = state.questions[state.currentQuestionIndex];
+  console.log(currentQuestion);
   state.lastAnswerCorrect = currentQuestion.correctChoiceIndex === answer;
   if (state.lastAnswerCorrect) {
     state.score++;
